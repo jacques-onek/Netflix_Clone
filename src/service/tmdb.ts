@@ -10,3 +10,10 @@ const tmdb = axios.create ({
         language:"fr-FR"
     }
 })
+
+// je cree une state pour les film populaire 
+
+export const getPopularMovies = async () => {
+    const response = await tmdb.get("/movie/popular")
+    return response.data.results
+}
