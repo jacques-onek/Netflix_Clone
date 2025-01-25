@@ -17,3 +17,8 @@ export const getPopularMovies = async () => {
     const response = await tmdb.get("/movie/popular")
     return response.data.results
 }
+
+export const getMovieDetails = async (movieId) => {
+
+    const response = await tmdb.get(`/movie/${movieId}`)
+}
