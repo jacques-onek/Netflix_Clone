@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+body{
+    background-color: #030000;
+}
+
+.bg_header {
+ background-image: url('./public/headerbg.jpg');
+}
