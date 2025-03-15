@@ -1,7 +1,7 @@
 const MovieHub = () => {
   return (
     <div>
-      
+      jdquqhdoqdoqo
     </div>
   )
 }
