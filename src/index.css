@@ -5,9 +5,20 @@
 
 
 body{
-    background-color: #030000;
+    background-color: #000000;
+    color: white;
 }
 
 .bg_header {
- background-image: url('./public/headerbg.jpg');
+    background-image: url("public/netflix-header-collection.png");
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px !important; /* Agrandit l'icône */
+  font-weight: bold;
+  fill:red;
+  color: red;
+  transform: translateX(-35px);
+  z-index: 999px;
 }
