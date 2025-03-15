@@ -6,15 +6,15 @@ const App = () => {
 
     <BrowserRouter>
        <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/movies" element={<MovieHub/>}>
-             <Route path="/movies:movieId" element={<MovieDetails/>} />
+          <Route element={<Home/>} path="/"  />
+          <Route element={<MovieHub/>} path="/movies" >
+             <Route element={<MovieDetails/>} path="/movies:movieId"  />
           </Route>
           <Route path="/tv" element={<TvHub/>}>
              <Route path="/tvId" element={<ChannelDetails/>} />
           </Route>
           <Route path="/series" element={<SeriesHub/>}>
-             <Route path="/movies:serieId" element={<SerieDetails/>} />
+             <Route path="/series:serieId" element={<SerieDetails/>} />
           </Route>
        </Routes>
     </BrowserRouter>
