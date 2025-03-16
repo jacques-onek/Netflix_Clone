@@ -59,7 +59,9 @@ export const fetchMovieDetails = async (movieId:string|number) => {
 
 export const fetchMovieTrailer = async (movieId:string|number) => {
   const res = await fetch(`${BASE_URL}/movie/${movieId}/videos?api_key=${API_KEY}`);
-  return res.json();
+  const data = await res.json()
+  const trailers = data.results?.filter((d: any) => d.type === "Trailer" && d.site === "YouTube");
+  return trailers.length > 0 ? `https://www.youtube.com/embed/${trailers[0].key}?autoplay=1&rel=0` : null;
 };
 
 // fetcher les film recommande suivant le datails du film 
