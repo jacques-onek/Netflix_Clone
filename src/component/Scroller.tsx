@@ -31,7 +31,7 @@ const Scroller = () => {
     isLoading ? <SkeletonSlider/> :
 
       <div>
-         <h1 className="text-2xl  mt-10 mb-8 max-md:my-2"> Popular Series/tv </h1>
+         <h1 className="text-2xl  mt-14 mb-8 max-md:my-6"> Popular Series/tv </h1>
             <CardTv />
       </div>
   }
@@ -41,7 +41,7 @@ const Scroller = () => {
     isLoading ? <SkeletonSlider/> :
 
       <div>
-         <h1 className="text-2xl  mt-10 mb-8 max-md:my-2"> Trending this week </h1>
+         <h1 className="text-2xl  mt-14 mb-8 max-md:my-6"> Trending this week </h1>
             <CardTrending />
       </div>
   }

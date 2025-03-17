@@ -4,6 +4,7 @@ import {  useQuery } from "@tanstack/react-query"
 import {fetchMovieTrailer} from '../service/tmdb'
 import Scroller from "../component/Scroller"
 import ReactPlayer from 'react-player'
+import Footer from "../component/Footer"
 
 const Home = () => {
 
@@ -39,9 +40,9 @@ const Home = () => {
            playing={true}
            muted={true}
            controls
-           width="80%"
+           width="90%"
            height="400px"
-           className="rounded-lg shadow-lg"
+           className="rounded-2xl shadow-lg"
            light={true}
            config={{
             youtube: {
@@ -61,7 +62,7 @@ const Home = () => {
         }
 
         </div>
-       
+       <Footer/>
     </div>
   )
 }
