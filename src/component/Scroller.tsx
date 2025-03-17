@@ -2,13 +2,14 @@ import Card from "./cards/card"
 import CardTrending from "./cards/CardTrending"
 import CardTv from "./cards/CardTv"
 import SkeletonSlider from "./SkeletonSlider"
+import { useMediaData } from "../page/queries/UseMultipleQueries"
 
 
 
-const Scroller = ({data}) => {
+const Scroller = () => {
 
-
-    const [movies,tvs,trending] = data
+  const { isLoading, isError } = useMediaData();
+    
 
 
   return (
@@ -16,33 +17,40 @@ const Scroller = ({data}) => {
 
 
         {
-         movies.isLoading ? <SkeletonSlider/> :
+         isLoading ? <SkeletonSlider/> :
 
             <div>
                      <h1 className="text-2xl  mt-14 mb-8 max-md:my-6"> Popular Movies </h1>
-                     <Card movie={movies.data?.results || []}/>
+                     <Card />
            </div> 
         }
 
 {/* slider section series/tv   */}
 
   {
-    tvs.isLoading ? <SkeletonSlider/> :
+    isLoading ? <SkeletonSlider/> :
 
       <div>
          <h1 className="text-2xl  mt-10 mb-8 max-md:my-2"> Popular Series/tv </h1>
-            <CardTv tv={tvs.data?.results || []}/>
+            <CardTv />
       </div>
   }
 
   {/* slider pour les tranding  */}
   {
-    trending.isLoading ? <SkeletonSlider/> :
+    isLoading ? <SkeletonSlider/> :
 
       <div>
          <h1 className="text-2xl  mt-10 mb-8 max-md:my-2"> Trending this week </h1>
-            <CardTrending trend={trending.data?.results || []}/>
+            <CardTrending />
       </div>
+  }
+  {
+    isError && (
+      <div>
+         Network error, check yours network 
+      </div>
+    )
   }
     </div>
   )

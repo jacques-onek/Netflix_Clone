@@ -1,11 +1,17 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { useMediaData } from "../../page/queries/UseMultipleQueries";
+import "swiper/css"; 
+import "swiper/css/navigation";
 
 
-const CardTv = ({tv}) => {
+const CardTv = () => {
 
 //   console.log(` the data fetched is ${tv}`)
+
+  const { tvShows:tv } = useMediaData();
+
 
   if (!tv || !Array.isArray(tv) || tv.length === 0) {
     return <p className="text-center text-gray-500">Aucun film disponible</p>;

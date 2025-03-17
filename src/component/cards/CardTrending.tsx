@@ -1,11 +1,18 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { useMediaData } from "../../page/queries/UseMultipleQueries";
+import "swiper/css"; 
+import "swiper/css/navigation";
 
 
-const CardTrending = ({trend}) => {
+const CardTrending = () => {
 
 //   console.log(` the data fetched is ${tv}`)
+
+
+  const { trending:trend } = useMediaData();
+
 
   if (!trend || !Array.isArray(trend) || trend.length === 0) {
     return <p className="text-center text-gray-500">Aucun film disponible</p>;

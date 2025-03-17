@@ -1,31 +1,13 @@
 import NavBar from "../component/NavBar"
 import Header from "../component/Header"
-import { useQueries, useQuery } from "@tanstack/react-query"
-import {fetchPopularTVShows,fetchPopularMovies,fetchTrending,fetchMovieTrailer} from '../service/tmdb'
+import {  useQuery } from "@tanstack/react-query"
+import {fetchMovieTrailer} from '../service/tmdb'
 import Scroller from "../component/Scroller"
 import ReactPlayer from 'react-player'
 
 const Home = () => {
 
-  const results = useQueries({
-    queries:[
-      // fetching popular movies 
-      {
-        queryKey:["popularMovie"],
-        queryFn:fetchPopularMovies
-      },
-      {
-        queryKey:["popularTv"],
-        queryFn:fetchPopularTVShows
-      },
-      {
-        queryKey:["trending"],
-        queryFn:fetchTrending
-      },
-
-    ]
-  })
-
+  
   const { data: trailerKey } = useQuery(
     {
       queryKey:["video",550],
@@ -33,8 +15,7 @@ const Home = () => {
       staleTime: 1000 * 60 * 5, 
     }
   )
-console.log(results[0].data)
-console.log(results[1].data)
+
   return (
     <div>
       {/* header section  */}
@@ -44,7 +25,7 @@ console.log(results[1].data)
        </div>
        {/* main section  */}
        <div>
-         <Scroller data={results} />
+         <Scroller />
        </div>
        {/* movie player */}
 

@@ -1,8 +1,7 @@
 import {motion} from 'framer-motion'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
+
 
 
 const SkeletonSlider = () => {
