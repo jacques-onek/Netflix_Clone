@@ -17,7 +17,7 @@ const Home = () => {
   )
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       {/* header section  */}
        <div>
          <Header/>
