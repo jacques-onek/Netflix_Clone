@@ -6,7 +6,7 @@ const NavBar = () => {
       <header className="flex w-full justify-around ">
           <div className="max-md:-left-5">
              <Link to="/">
-                <img src="/src/public/logo.png" alt="Home page" className="h-12 max-md:h-10 max-md:absolute left-7 " />
+                <img src="public/logo.png" alt="Home page" className="h-12 max-md:h-10 max-md:absolute left-7 " />
              </Link>
           </div>
           <div className="block max-md:hidden ">
