@@ -1,5 +1,7 @@
 // import axios from 'axios';
 
+import { MediaItem, MediaResponse, MovieVideoResponse } from "../type/type";
+
 
 const BASE_URL = 'https://api.themoviedb.org/3'
 const API_KEY = import.meta.env.VITE_API_KEY
@@ -20,17 +22,19 @@ const API_KEY = import.meta.env.VITE_API_KEY
 
 // EndPoint pour les films populaires utilise dans le composant moviehub 
 
-export const fetchPopularMovies = async () => {
+export const fetchMovies = async (): Promise<MediaItem[]> => {
   const res = await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}`);
-  return res.json();
+  const data: MediaResponse = await res.json();
+  return data.results;
 };
 
 
 // EndPoint pour le trending des films 
 
-export const fetchTrending = async () => {
+export const fetchTrending = async (): Promise<MediaItem[]> => {
   const res = await fetch(`${BASE_URL}/trending/all/week?api_key=${API_KEY}`);
-  return res.json();
+  const data: MediaResponse = await res.json();
+  return data.results;
 };
 
 // film les mieux note  
@@ -59,8 +63,8 @@ export const fetchMovieDetails = async (movieId:string|number) => {
 
 export const fetchMovieTrailer = async (movieId:string|number) => {
   const res = await fetch(`${BASE_URL}/movie/${movieId}/videos?api_key=${API_KEY}`);
-  const data = await res.json()
-  const trailers = data.results?.filter((d: any) => d.type === "Trailer" && d.site === "YouTube");
+  const data:MovieVideoResponse = await res.json()
+  const trailers = data.results?.filter((d) => d.type === "Trailer" && d.site === "YouTube");
   return trailers.length > 0 ? `https://www.youtube.com/embed/${trailers[0].key}?autoplay=1&rel=0` : null;
 };
 
@@ -93,9 +97,10 @@ export const fetchMovieCast = async (movieId:string|number) => {
 
 // series populaire 
 
-export const fetchPopularTVShows = async () => {
+export const fetchTVShows = async (): Promise<MediaItem[]> => {
   const res = await fetch(`${BASE_URL}/tv/popular?api_key=${API_KEY}`);
-  return res.json();
+  const data: MediaResponse = await res.json();
+  return data.results;
 };
 
 
