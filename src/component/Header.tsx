@@ -14,7 +14,7 @@ const Header = () => {
          Explore trending content, discover hidden gems, and create your personalized watchlist. 
          Your entertainment, your way
        </p>
-       <button className="px-7 py-3 bg-[#e40813] text-white rounded-md max-lg:w-[30rem] max-lg:py-8 max-lg:text-3xl max-md:w-auto max-md:py-4 max-md:text-xl"> Get Started</button>
+       <button className="px-7 py-3 bg-[#e40813] outline-none transition duration-200 hover:bg-red-700 text-white rounded-full max-lg:w-[30rem] max-lg:py-8 max-lg:text-3xl max-md:w-auto animate-pulse max-md:py-4 max-md:text-xl"> Get Started</button>
        </div>
       
     </div>
