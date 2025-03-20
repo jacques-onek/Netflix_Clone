@@ -1,10 +1,27 @@
 import { Link } from "react-router-dom"
 import logo from '../public/logo.png'
+import { useContext} from "react"
+import { LuAlignRight } from "react-icons/lu";
+import NavBarMobile from "./NavBarMobile";
+import { NavBarContext } from "../context/NAvBarcontext";
 
 const NavBar = () => {
+
+         const context = useContext (NavBarContext)
+         if (!context) {
+          throw new Error("SomeComponent must be used within a <NavBarContextProvider>");
+        }
+         const [isOpen,toggle] = context
+
   return (
+    <div>
+      
+      {
+        isOpen ? <NavBarMobile/> :
+      
     <div className=" h-20 absolute top-0 w-full shadow-lg py-4 flex justify-around z-50 bg-black bg-opacity-70 ">
       <header className="flex w-full justify-around ">
+
           <div className="max-md:-left-5">
              <Link to="/">
                 <img src={logo} alt="Home page" className="h-12 max-md:h-10 max-md:absolute left-7 " />
@@ -26,7 +43,12 @@ const NavBar = () => {
                 </Link>
               </ul>
           </div>
+          <div className=" text-3xl font-bold text-white lg:hidden absolute right-10 ">
+             <button onClick={toggle}><LuAlignRight /></button>
+          </div>
        </header>
+     </div>
+     }
     </div>
   )
 }
