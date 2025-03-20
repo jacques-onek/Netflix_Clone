@@ -5,6 +5,7 @@ import {fetchMovieTrailer} from '../service/tmdb'
 import Scroller from "../component/Scroller"
 import ReactPlayer from 'react-player'
 import Footer from "../component/Footer"
+import { NavBarContextProvider } from "../context/NAvBarcontext"
 
 const Home = () => {
 
@@ -20,10 +21,10 @@ const Home = () => {
   return (
     <div className="overflow-x-hidden">
       {/* header section  */}
-       <div>
+       <NavBarContextProvider>
          <Header/>
          <NavBar/>
-       </div>
+       </NavBarContextProvider>
        {/* main section  */}
        <div>
          <Scroller />
