@@ -39,17 +39,19 @@ export const fetchTrending = async (): Promise<MediaItem[]> => {
 
 // film les mieux note  
 
-export const fetchTopRatedMovies = async () => {
+export const fetchTopRatedMovies = async (): Promise<MediaItem[]> => {
   const res = await fetch(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}`);
-  return res.json();
+  const data : MediaResponse = await res.json();
+  return data.results
 };
 
 
 // filtre par genre 
 
-export const fetchMoviesByGenre = async (genreId:number|string) => {
+export const fetchMoviesByGenre = async (genreId:number|string): Promise<MediaItem[]> => {
   const res = await fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}`);
-  return res.json();
+  const data : MediaResponse = await res.json();
+  return  data.results
 };
 
 // details du film 
@@ -70,7 +72,7 @@ export const fetchMovieTrailer = async (movieId:string|number) => {
 
 // fetcher les film recommande suivant le datails du film 
 
-export const fetchMovieRecommendations = async (movieId:string|number) => {
+export const fetchMovieRecommendations = async (movieId:string|number):Promise<MediaItem[]> =>  {
   const res = await fetch(`${BASE_URL}/movie/${movieId}/recommendations?api_key=${API_KEY}`);
   return res.json();
 };
@@ -106,9 +108,10 @@ export const fetchTVShows = async (): Promise<MediaItem[]> => {
 
 // serie en cour de diffusion  
 
-export const fetchAiringTVShows = async () => {
+export const fetchAiringTVShows = async (): Promise<MediaItem[]> => {
   const res = await fetch(`${BASE_URL}/tv/on_the_air?api_key=${API_KEY}`);
-  return res.json();
+  const data: MediaResponse = await res.json();
+  return data.results;
 };
 
 // serie par tendances 
