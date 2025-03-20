@@ -1,9 +1,7 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import {  SwiperSlide } from "swiper/react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useMediaData } from "../../page/queries/UseMultipleQueries";
-import "swiper/css"; 
-import "swiper/css/navigation";
+import Swipper from "./Swipper";
 
 
 const CardTv = () => {
@@ -26,20 +24,7 @@ const CardTv = () => {
            <FaChevronLeft size={20} />
         </button>
       </div>
-    <Swiper
-    modules={[Navigation]} // Espace entre les slides
-    spaceBetween={3}
-    breakpoints={{
-        320: { slidesPerView: 3 }, // Mobile
-        480: { slidesPerView: 3 }, // Grand mobile
-        768: { slidesPerView: 4}, // Tablette
-        1024: { slidesPerView: 4 }, // Desktop
-        1280: { slidesPerView: 5 }, // Grand écran
-      }}
-    navigation={{ nextEl: ".nextTv", prevEl: ".prevTv" }} // Lie les boutons
-    loop={true} // Boucle infinie
-    className="w-full flex overflow-hidden"
-    >
+    <Swipper prevData="prevTv"  nextData="nextTv">
       {
          tv.map((data) => (
           <SwiperSlide key={data.id} className='flex justify-normal pb-10 mx-1 max-md:mx-2 hover:scale-105 transition ease-out duration-200'>
@@ -48,7 +33,7 @@ const CardTv = () => {
          </SwiperSlide>
          ))
       }
-    </Swiper>
+    </Swipper>
           {/* Bouton Suivant */}
       <button  className="nextTv absolute max-md:hidden -right-10 top-24 -translate-y-1/3 bg-black bg-opacity-50 text-red-700 p-2 rounded-full z-10"  >
         <FaChevronRight size={20} />

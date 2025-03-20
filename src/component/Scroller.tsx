@@ -16,14 +16,16 @@ const Scroller = () => {
     <div className="relative h-auto flex flex-col px-10 max-md:px-4">
 
 
-        {
-         isLoading ? <SkeletonSlider/> :
+        {/* slider pour les tranding  */}
+  {
+    isLoading ? <SkeletonSlider/> :<CardTrending />
+  }
 
-            <div>
-                     <h1 className="text-2xl  mt-14 mb-8 max-md:my-6"> Popular Movies </h1>
-                     <Card />
-           </div> 
-        }
+  {/* slider pour les films  */}
+  {
+     isLoading ? <SkeletonSlider/> : <Card />
+          
+  }
 
 {/* slider section series/tv   */}
 
@@ -36,15 +38,6 @@ const Scroller = () => {
       </div>
   }
 
-  {/* slider pour les tranding  */}
-  {
-    isLoading ? <SkeletonSlider/> :
-
-      <div>
-         <h1 className="text-2xl  mt-14 mb-8 max-md:my-6"> Trending this week </h1>
-            <CardTrending />
-      </div>
-  }
   {
     isError && (
       <div>

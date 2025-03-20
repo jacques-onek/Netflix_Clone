@@ -1,9 +1,9 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { SwiperSlide } from "swiper/react";
 import { useMediaData } from "../../page/queries/UseMultipleQueries";
 import "swiper/css"; 
 import "swiper/css/navigation";
+import Swipper from "./Swipper";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 
 const CardTrending = () => {
@@ -20,27 +20,15 @@ const CardTrending = () => {
 
   return (
     <div className="relative w-full " >
-
-        {/* Bouton Précédent */}
-      <div className="  mr-10 rounded-full bg-black bg-opacity-100">
-        <button className="prevTrend absolute max-md:hidden -left-10 top-24 -translate-y-1/3 bg-black bg-opacity-50 text-red-700 p-2 rounded-full z-10">
+       <h1 className="text-2xl  mt-14 mb-8 max-md:my-6"> Trending this week </h1>
+    <div className="relative w-full ">
+    {/* Bouton Précédent */}
+     <div className="  mr-10 rounded-full bg-black bg-opacity-100 ">
+        <button className="prevTrend  absolute max-md:hidden -left-10 top-24 -translate-y-1/3 bg-black bg-opacity-50  text-red-700 p-2 rounded-full z-10">
            <FaChevronLeft size={20} />
         </button>
       </div>
-    <Swiper
-    modules={[Navigation]} // Espace entre les slides
-    spaceBetween={3}
-    breakpoints={{
-        320: { slidesPerView: 3 }, // Mobile
-        480: { slidesPerView: 3 }, // Grand mobile
-        768: { slidesPerView: 4}, // Tablette
-        1024: { slidesPerView: 4 }, // Desktop
-        1280: { slidesPerView: 5 }, // Grand écran
-      }}
-    navigation={{ nextEl: ".nextTrend", prevEl: ".prevTrend" }} // Lie les boutons
-    loop={true} // Boucle infinie
-    className="w-full flex overflow-hidden"
-    >
+    <Swipper prevData="prevTrend" nextData ="nextTrend" >
       {
          trend.map((data) => (
           <SwiperSlide key={data.id} className='flex justify-normal pb-10 mx-1 max-md:mx-2 hover:scale-105 transition ease-out duration-200'>
@@ -49,11 +37,12 @@ const CardTrending = () => {
          </SwiperSlide>
          ))
       }
-    </Swiper>
-          {/* Bouton Suivant */}
-      <button  className="nextTrend absolute max-md:hidden  -right-10 top-24 -translate-y-1/3 bg-black bg-opacity-50 text-red-700 p-2 rounded-full z-10"  >
+    </Swipper>
+              {/* Bouton Suivant */}
+      <button className="nextTrend absolute  -right-10 top-24 max-md:hidden -translate-y-1/3 bg-black bg-opacity-50 text-red-700 p-2 rounded-full z-10">
         <FaChevronRight size={20} />
       </button>
+      </div>
     </div>
   )
 }

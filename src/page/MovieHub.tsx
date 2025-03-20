@@ -1,7 +1,9 @@
+import Scroller from "../component/Scroller"
+
 const MovieHub = () => {
   return (
     <div>
-      jdquqhdoqdoqo
+      <Scroller/>
     </div>
   )
 }
