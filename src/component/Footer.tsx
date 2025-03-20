@@ -11,7 +11,7 @@ const Footer = () => {
         <p className="max-md:mb-5">
             Checkout out the Plateform for more experience, Click the button below 
         </p>
-          <Link to='/movies'> <button className="px-14 max-md:px-10 outline-none transition duration-200  hover:bg-[#e40812] py-4 rounded-full animate-bounce  text-xl text-center my-7 bg-[#e40813] text-white">Go to the Plateform</button> </Link>
+          <Link to="/movies"> <button className="px-14 max-md:px-10 outline-none transition duration-200  hover:bg-[#e40812] py-4 rounded-full animate-bounce  text-xl text-center my-7 bg-[#e40813] text-white">Go to the Plateform</button> </Link>
       </div>
       <div className="py-4 px-7 max-md:text-sm flex justify-around border-t-2 border-t-stone-900 text-[#e40813]">
             <p>  Netflix 2.0  2024</p>
