@@ -4,6 +4,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Swipper from "./Swipper";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { IoIosStar } from "react-icons/io";
 
 
 const CardTrending = () => {
@@ -34,6 +35,17 @@ const CardTrending = () => {
           <SwiperSlide key={data.id} className='flex justify-normal pb-10 mx-1 max-md:mx-2 hover:scale-105 transition ease-out duration-200'>
             <img src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} alt="" className="h-48 w-72 object-center max-md:h-32  rounded-md hover:scale-95 transition duration-200 ease-out"/>
             <p className="text-lg mx-2 my-4 max-md:text-sm truncate">{data.title || data.name}</p>
+                          <div className="flex  gap-4">
+                           <p className="flex text-yellow-500 justify-stretch ">
+                           {
+                              Array.from({ length: 3 }).map((_,index) => (
+                                 <IoIosStar key={index} size={14}/>
+                              ))
+                           }
+                           </p>
+                           <p className="text-xs">{data.vote_average}</p>
+            
+                          </div>
          </SwiperSlide>
          ))
       }

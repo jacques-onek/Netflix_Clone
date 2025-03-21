@@ -3,6 +3,7 @@ import { fetchMoviesByGenre } from "../../service/tmdb";
 import Swipper from "./Swipper";
 import { SwiperSlide } from "swiper/react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { IoIosStar } from "react-icons/io";
 
 const genres = [
    { id: 28, name: "Action" },
@@ -57,12 +58,25 @@ const MovieCarousel :React.FC<MovieCarouselProps> = ({ genreId, genreName }) => 
                 alt={movie.title || movie.name}
                 className="h-48 w-72 object-center max-md:h-32 rounded-md hover:scale-95 transition duration-200 ease-out"
               />
-              <p className="text-lg mx-2 my-4 max-md:text-sm truncate">{movie.title || movie.name}</p>
+              <div>
+              <p className="text-lg mx-2 my-4 max-md:text-sm truncate ">{movie.title || movie.name}</p>
+              <div className="flex  gap-4">
+               <p className="flex text-yellow-500 justify-stretch ">
+               {
+                  Array.from({ length: 3 }).map((_,index) => (
+                     <IoIosStar key={index} size={14}/>
+                  ))
+               }
+               </p>
+               <p className="text-xs">{movie.vote_average}</p>
+
+              </div>
+              </div>
             </SwiperSlide>
           ))}
         </Swipper>
         <button className={`next-${genreName.toLowerCase()} absolute -right-10 top-24 max-md:hidden -translate-y-1/3 bg-black bg-opacity-50 text-red-700 p-2 rounded-full z-10`}>
-          <FaChevronRight size={20} />
+          <FaChevronRight size={22} />
         </button>
       </div>
     </div>
