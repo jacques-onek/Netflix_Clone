@@ -25,7 +25,7 @@ const Card = () => {
     <div className="relative w-full ">
       {/* fetcher les films populaire  */}
        <div>
-              <h1 className="text-2xl  mt-14 mb-8 max-md:my-6"> Popular Movies </h1>     
+              <h1 className="text-2xl  mt-14 mb-8 max-md:my-6 font-extrabold"> Popular Movies </h1>     
             <div className="relative w-full ">
                   {/* Bouton Précédent */}
                <div className="  mr-10 rounded-full bg-black bg-opacity-100">
@@ -49,7 +49,7 @@ const Card = () => {
               </button>
           </div>
           <div>
-              <h1 className="text-2xl  mt-14 mb-8 max-md:my-6"> Top rating movies </h1>     
+              <h1 className="text-2xl  mt-14 mb-8 max-md:my-6 font-extrabold"> Top rating movies </h1>     
             <div className="relative w-full ">
                   {/* Bouton Précédent */}
                <div className="  mr-10 rounded-full bg-black bg-opacity-100">

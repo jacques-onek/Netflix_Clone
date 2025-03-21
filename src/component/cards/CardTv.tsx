@@ -12,7 +12,7 @@ const CardTv = () => {
 
 
   if (!tv || !Array.isArray(tv) || tv.length === 0) {
-    return <p className="text-center text-gray-500">Aucun film disponible</p>;
+    return <p className="text-center text-gray-500 font-extrabold">Aucun film disponible</p>;
   }
 
   return (

@@ -20,7 +20,7 @@ const CardTrending = () => {
 
   return (
     <div className="relative w-full " >
-       <h1 className="text-2xl  mt-14 mb-8 max-md:my-6"> Trending this week </h1>
+       <h1 className="text-2xl  mt-14 mb-8 max-md:my-6 font-extrabold"> Trending this week </h1>
     <div className="relative w-full ">
     {/* Bouton Précédent */}
      <div className="  mr-10 rounded-full bg-black bg-opacity-100 ">

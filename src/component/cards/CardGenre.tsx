@@ -41,7 +41,7 @@ const MovieCarousel :React.FC<MovieCarouselProps> = ({ genreId, genreName }) => 
 
   return (
     <div>
-      <h1 className="text-2xl mt-14 mb-8 max-md:my-6">{genreName} Movies</h1>
+      <h1 className="text-2xl mt-14 mb-8 max-md:my-6 font-extrabold ">{genreName} Movies</h1>
       <div className="relative w-full">
         <button className={`prev-${genreName.toLowerCase()} absolute max-md:hidden -left-10 top-24 -translate-y-1/3 bg-black bg-opacity-50 text-red-700 p-2 rounded-full z-10`}>
           <FaChevronLeft size={20} />
