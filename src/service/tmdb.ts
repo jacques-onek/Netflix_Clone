@@ -6,6 +6,8 @@ import { MediaItem, MediaResponse, MovieVideoResponse } from "../type/type";
 const BASE_URL = 'https://api.themoviedb.org/3'
 const API_KEY = import.meta.env.VITE_API_KEY
 
+
+
 // const tmdb = axios.create({
 //   baseURL: BASE_URL,
 //   params: {
@@ -48,7 +50,7 @@ export const fetchTopRatedMovies = async (): Promise<MediaItem[]> => {
 
 // filtre par genre 
 
-export const fetchMoviesByGenre = async (genreId:number|string): Promise<MediaItem[]> => {
+export const fetchMoviesByGenre = async (genreId:number|string) => {
   const res = await fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}`);
   const data : MediaResponse = await res.json();
   return  data.results
@@ -56,9 +58,11 @@ export const fetchMoviesByGenre = async (genreId:number|string): Promise<MediaIt
 
 // details du film 
 
-export const fetchMovieDetails = async (movieId:string|number) => {
+
+export const fetchMovieDetails = async (movieId:string|number)  => {
   const res = await fetch(`${BASE_URL}/movie/${movieId}?api_key=${API_KEY}`);
-  return res.json();
+  const data = await res.json();
+  return data
 };
 
 // fetcher les video du film 
@@ -72,7 +76,7 @@ export const fetchMovieTrailer = async (movieId:string|number) => {
 
 // fetcher les film recommande suivant le datails du film 
 
-export const fetchMovieRecommendations = async (movieId:string|number):Promise<MediaItem[]> =>  {
+export const fetchMovieRecommendations = async (movieId:string|number)=>  {
   const res = await fetch(`${BASE_URL}/movie/${movieId}/recommendations?api_key=${API_KEY}`);
   return res.json();
 };
