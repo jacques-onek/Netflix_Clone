@@ -4,6 +4,7 @@ import Swipper from "./Swipper";
 import { SwiperSlide } from "swiper/react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { IoIosStar } from "react-icons/io";
+import {  useNavigate } from "react-router-dom";
 
 const genres = [
    { id: 28, name: "Action" },
@@ -39,6 +40,8 @@ const MovieCarousel :React.FC<MovieCarouselProps> = ({ genreId, genreName }) => 
     queryKey: [genreName],
     queryFn: () => fetchMoviesByGenre(genreId),
   });
+  const navigate = useNavigate()
+
 
   return (
     <div>
@@ -51,6 +54,7 @@ const MovieCarousel :React.FC<MovieCarouselProps> = ({ genreId, genreName }) => 
           {movies?.map((movie) => (
             <SwiperSlide
               key={movie.id}
+              onClick={() => navigate(`/movies/${movie.id}`)}
               className="flex justify-normal pb-10 mx-1 max-md:mx-2 hover:scale-105 transition ease-out duration-200"
             >
               <img
@@ -59,8 +63,8 @@ const MovieCarousel :React.FC<MovieCarouselProps> = ({ genreId, genreName }) => 
                 className="h-48 w-72 object-center max-md:h-32 rounded-md hover:scale-95 transition duration-200 ease-out"
               />
               <div>
-              <p className="text-lg mx-2 my-4 max-md:text-sm truncate ">{movie.title || movie.name}</p>
-              <div className="flex  gap-4">
+              <p className="text-lg my-1 max-md:text-sm truncate ">{movie.title || movie.name}</p>
+              <div className="flex  gap-2 ">
                <p className="flex text-yellow-500 justify-stretch ">
                {
                   Array.from({ length: 3 }).map((_,index) => (
