@@ -1,5 +1,5 @@
 import {BrowserRouter,Routes,Route} from "react-router-dom"
-import { Home,MovieHub,MovieDetails,TvHub,ChannelDetails,SeriesHub,SerieDetails} from "./page"
+import { Home,MovieHub,MovieDetails,SeriesHub,SerieDetails} from "./page"
 
 const App = () => {
   return (
@@ -7,14 +7,11 @@ const App = () => {
     <BrowserRouter>
        <Routes>
           <Route element={<Home/>} path="/"  />
-          <Route element={<MovieHub/>} path="/movies" >
-             <Route element={<MovieDetails/>} path="/movies:movieId"  />
-          </Route>
-          <Route path="/tv" element={<TvHub/>}>
-             <Route path="/tvId" element={<ChannelDetails/>} />
+          <Route path="/movies" element={<MovieHub/>}  >
+             <Route  path=":movieId" element={<MovieDetails/>} />
           </Route>
           <Route path="/series" element={<SeriesHub/>}>
-             <Route path="/series:serieId" element={<SerieDetails/>} />
+             <Route path=":serieId" element={<SerieDetails/>} />
           </Route>
        </Routes>
     </BrowserRouter>
