@@ -1,9 +1,11 @@
-import Scroller from "../component/Scroller"
+// import Scroller from "../component/Scroller"
+import { Outlet } from "react-router-dom"
 
 const MovieHub = () => {
   return (
     <div>
-      <Scroller/>
+      {/* <Scroller/> */}
+      <Outlet/>
     </div>
   )
 }
