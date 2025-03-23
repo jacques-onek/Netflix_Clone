@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { fetchMovieDetails , fetchMovieRecommendations } from "../service/tmdb";
 import { useEffect, useState } from "react";
@@ -24,6 +24,8 @@ const MovieDetails = () => {
   })
 
  const [bg,setbg] = useState("")
+
+ const navigate = useNavigate()
 
  useEffect(() => {
     if (MovieDetails) {
@@ -109,7 +111,7 @@ const MovieDetails = () => {
             </div>
          </div>
          <div className="relative w-full " >
-       <h1 className="text-xl  mt-14 mb-8 max-md:my-6 font-extrabold"> Recommanded movies </h1>
+       <h1 className="text-xl  mt-14 mb-8 max-md:my-6 font-extrabold px-4"> Recommanded movies </h1>
     <div className="relative w-full ">
     {/* Bouton Précédent */}
      <div className="  mr-10 rounded-full bg-black bg-opacity-100 ">
@@ -120,7 +122,7 @@ const MovieDetails = () => {
     <Swipper prevData="prevTrend" nextData ="nextTrend" >
       {
          MovieRecommanded?.map((data) => (
-          <SwiperSlide key={data.id} className='flex justify-normal pb-10 mx-1 max-md:mx-2 hover:scale-105 transition ease-out duration-200'>
+          <SwiperSlide key={data.id} onClick={() => navigate(`/movies/${data.id}`)} className='flex justify-normal pb-10 mx-1 max-md:mx-2 hover:scale-105 transition ease-out duration-200'>
             <img src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} alt="" className="h-48 w-72 object-center max-md:h-32  rounded-md hover:scale-95 transition duration-200 ease-out"/>
             <p className="text-lg   max-md:text-sm truncate">{data.title || data.name}</p>
                           <div className="flex  gap-4">
