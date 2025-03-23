@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { fetchMovieDetails , fetchMovieRecommendations } from "../service/tmdb";
+import { fetchMovieDetails , fetchMovieRecommendations,fetchMovieCast } from "../service/tmdb";
 import { useEffect, useState } from "react";
 import SkeletonSlider from "../component/SkeletonSlider";
 import { BiSolidMoviePlay } from "react-icons/bi"
@@ -19,9 +19,21 @@ const MovieDetails = () => {
   })
 
   const {data:MovieRecommanded} = useQuery({
-    queryKey:["recommanded"],
+    queryKey:["recommanded",movieId],
     queryFn:() => fetchMovieRecommendations(movieId!)
   })
+
+  const {data:MovieCasting} = useQuery({
+    queryKey:["casting",movieId],
+    queryFn:() => fetchMovieCast(movieId!)
+  })
+
+  
+  // useEffect(() => {
+  //   if (MovieCasting) {
+  //     console.table(MovieDetails)
+  //   }
+  // },[MovieCasting])
 
  const [bg,setbg] = useState("")
 
@@ -29,7 +41,6 @@ const MovieDetails = () => {
 
  useEffect(() => {
     if (MovieDetails) {
-      console.table(MovieDetails)
       const bg_image = `https://image.tmdb.org/t/p/original${MovieDetails?.backdrop_path}`
       setbg(bg_image)
     }
@@ -53,10 +64,10 @@ const MovieDetails = () => {
     <div className="overflow-x-hidden">
       <div className="w-screen flex pl-14 max-md:pl-2 flex-col justify-between max-md:gap-32 bg-no-repeat max-md:h-[35vh]  top-2 h-[95vh]   bg-cover  bg-center max-md:rounded-sm   " style={{backgroundImage:`url(${bg})`}}>
       <div className="flex flex-col justify-between h-full ">
-          <div className="w-6/12  flex-col pt-44 max-md:pt-16 px-auto   mb-14 max-md:w-full max-lg:w-screen max-md:px-0 relative  -left-8  max-md:ml-14">
+          <div className="w-6/12  flex-col pt-44 max-md:pt-16 px-auto   mb-10 max-md:w-full max-lg:w-screen max-md:px-0 relative  -left-8  max-md:ml-14">
              <h1 className="text-6xl  font-black text-[#e40813] max-md:text-3xl max-md:pr-5 max-lg:text-6xl ">{MovieDetails?.title}</h1>
           </div>
-          <div className="px-10 max-md: w-6/12 ml-10  h-48  border-0 max-md:py-5  relative -left-16 max-md:w-screen  max-lg:w-full overflow-x-auto">
+          <div className="px-10 max-md: w-6/12 ml-10 mt-2 h-48  border-0 max-md:py-5  relative -left-20 max-md:w-screen  max-lg:w-full overflow-x-auto">
             <button className="px-20 py-3 bg-[#e40813] z-50 max-md:py-2 outline-none transition duration-200 hover:bg-red-700 text-white rounded-xl max-lg:w-[30rem] max-lg:py-8 max-lg:text-3xl max-md:w-auto  max-md:px-4 max-md:text-xl"> 
                 <div className="flex  gap-4 justify-center "> 
                   <BiSolidMoviePlay/> <p className="text-sm">Watch Now</p> 
@@ -67,45 +78,47 @@ const MovieDetails = () => {
     </div>
          <div>
             {/* je code la partie du titre de details  */}
-            <div className="px-3">
+            <div className="px-4 lg:px-10">
                <div className="flex gap-3 py-5 ">
                  {MovieDetails.genres.map(({id,name}:{id:number,name:string}) => (
                   <p key={id}className="text-sm text-slate-600" > {name}</p>
                  ))}
                </div>
-               <div>
-                  <p className="text-sm"> {MovieDetails.overview} </p>
+               <div className="lg:w-7/12">
+                  <p className="text-sm lg:text-xl "> {MovieDetails.overview} </p>
                </div>
                <div className="flex gap-3 py-5">
                 <div className="flex gap-2">
-                     <p className="flex text-yellow-500 justify-stretch ">
+                     <p className="flex text-yellow-500 justify-stretch  ">
                  {
                      Array.from({ length: 3 }).map((_,index) => (
-                       <IoIosStar key={index} size={14}/>
+                       <IoIosStar key={index} size={14} className="lg:size-5"/>
                     ))
                  }
                  </p>
-                 <p className="text-xs">{MovieDetails.vote_average}</p>
+                 <p className="text-xs lg:text-lg">{MovieDetails.vote_average}</p>
                  </div>
-                 <div className="flex text-xs gap-3">
+                 <div className="flex text-xs gap-3 lg:text-lg">
                    <p>{MovieDetails.status}</p>
                    <p>{MovieDetails.release_date}</p>
                  </div>
                  </div>
-                 <div>
+                 <div >
                     <h1> Companies Owner  </h1>
-                     <div className="flex flex-col gap-2 w-full ">
+                    <div className="grid-cols-2 gap-2 w-full ">
+                     <div className=" ">
                         {MovieDetails.production_companies.map(({id,logo_path,name,origin_country}:{id:number,logo_path:string, name:string, origin_country:string}) => (
                           <div key={id} className="flex gap-3 py-4 ">
-                            <img src={logo_path ? `https://image.tmdb.org/t/p/w500/${logo_path}` : 'https://picsum.photos/150'} alt={name} className="h-auto w-2/5 size-auto rounded-xl"/>
-                             <div>
-                                 <p>{name}</p>
-                                 <p>{origin_country}</p>                              
+                            <img src={logo_path ? `https://image.tmdb.org/t/p/w500/${logo_path}` : 'https://picsum.photos/150'} alt={name} className=" size-20 w-auto max-w-44 rounded-xl lg:max-w-full"/>
+                             <div className="text-sm truncate">
+                                 <p className="text-sm">{name}</p>
+                                 <p className="text-sm">{origin_country}</p>                              
                              </div>
 
                           </div>
                         ))}
-                    </div>   
+                    </div>
+                  </div>   
                 </div>
                
             </div>
@@ -144,6 +157,19 @@ const MovieDetails = () => {
       <button className="nextTrend absolute  -right-10 top-24 max-md:hidden -translate-y-1/3 bg-black bg-opacity-50 text-red-700 p-2 rounded-full z-10">
         <FaChevronRight size={20} />
       </button>
+      </div>
+    </div>
+    <div className="flex flex-col px-10 max-md:px-4">
+      <h1 className="text-xl  mt-14 mb-8 max-md:my-6 font-extrabold px-4"> Casting </h1>
+      <div className="grid grid-cols-3 max-md:grid-cols-1 ">
+       {MovieCasting?.cast.map(({id,profile_path,name,character}:{id:number,profile_path:string,name:string,character:string}) => (
+         <div key={id} className="flex ml-4 gap-3 py-4 text-center">
+           <img src={profile_path ? `https://image.tmdb.org/t/p/w500/${profile_path}` : 'https://picsum.photos/150'} alt={name} className=" object-center  size-24 rounded-xl"/>
+           <div>
+             <p>{name}</p>
+             <p>{character}</p>
+           </div>
+          </div>))}
       </div>
     </div>
       </div>
