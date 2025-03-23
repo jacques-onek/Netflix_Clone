@@ -76,9 +76,10 @@ export const fetchMovieTrailer = async (movieId:string|number) => {
 
 // fetcher les film recommande suivant le datails du film 
 
-export const fetchMovieRecommendations = async (movieId:string|number)=>  {
+export const fetchMovieRecommendations = async (movieId:string|number): Promise<MediaItem[]> =>  {
   const res = await fetch(`${BASE_URL}/movie/${movieId}/recommendations?api_key=${API_KEY}`);
-  return res.json();
+  const data :MediaResponse = await  res.json();
+  return data.results
 };
 
 
