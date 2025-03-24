@@ -40,8 +40,9 @@ const MovieDetails = () => {
 
  const navigate = useNavigate()
 
- useEffect(() => {
+ useEffect(() => { 
     if (MovieDetails) {
+      console.table(MovieDetails)
       const bg_image = `https://image.tmdb.org/t/p/original${MovieDetails?.backdrop_path}`
       setbg(bg_image)
     }
@@ -104,23 +105,6 @@ const MovieDetails = () => {
                    <p>{MovieDetails.release_date}</p>
                  </div>
                  </div>
-                 {/* <div >
-                    <h1> Companies Owner  </h1>
-                    <div className="gap-2 w-full ">
-                     <div className=" grid grid-cols-2 grid-rows-2 ">
-                        {MovieDetails.production_companies.map(({id,logo_path,name,origin_country}:{id:number,logo_path:string, name:string, origin_country:string}) => (
-                          <div key={id} className="flex flex-col-reverse gap-3 py-4 ">
-                            <img src={logo_path ? `https://image.tmdb.org/t/p/w500/${logo_path}` : 'https://picsum.photos/150'} alt={name} className=" size-10 w-auto max-w-44 rounded-xl lg:max-w-full"/>
-                             <div className="text-sm truncate">
-                                 <p className="text-sm">{name}</p>
-                                 <p className="text-sm">{origin_country}</p>                              
-                             </div>
-
-                          </div>
-                        ))}
-                    </div>
-                  </div>   
-                </div> */}
                
             </div>
          </div>
@@ -172,6 +156,10 @@ const MovieDetails = () => {
         <FaChevronRight size={20} />
       </button>
       </div>
+      </div>
+          <div className="py-4 px-7 max-md:text-sm flex font-thin max-md:flex-col justify-around border-t-2 border-t-stone-900 text-white">
+            <p>  Netflix 2.0  2024</p>
+            <p>By Onek James All right Reserved</p>
       </div>
    </div>
   );
