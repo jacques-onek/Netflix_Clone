@@ -85,9 +85,10 @@ export const fetchMovieRecommendations = async (movieId:string|number): Promise<
 
 // recherche des film ou series 
 
-export const fetchSearchResults = async (query:string|number) => {
-  const res = await fetch(`${BASE_URL}/search/multi?api_key=${API_KEY}&query=${query}`);
-  return res.json();
+export const fetchSearchResults = async (query:string|number): Promise<MediaItem[]> => {
+  const res = await fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`);
+  const data:MediaResponse  = await res.json();
+  return data.results;
 };
 
 
@@ -172,9 +173,10 @@ export const fetchTVShowCast = async (tvId:string|number) => {
 
 // recherche des series Tv 
 
-export const fetchTVSearchResults = async (query:string) => {
+export const fetchTVSearchResults = async (query:string): Promise<MediaItem[]> => {
   const res = await fetch(`${BASE_URL}/search/tv?api_key=${API_KEY}&query=${query}`);
-  return res.json();
+  const data: MediaResponse = await res.json();
+  return data.results;
 };
 
 
