@@ -22,8 +22,8 @@ const Home = () => {
     <div className="overflow-x-hidden">
       {/* header section  */}
        <NavBarContextProvider>
-         <Header/>
          <NavBar/>
+         <Header/>
        </NavBarContextProvider>
        {/* main section  */}
        <div>

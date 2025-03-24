@@ -19,7 +19,7 @@ const NavBar = () => {
       {
         isOpen ? <NavBarMobile/> :
       
-    <div className=" h-20 absolute top-0 w-full shadow-lg py-4 flex justify-around z-50 bg-black bg-opacity-70 ">
+    <div className=" h-20 relative top-0 w-full shadow-lg py-4  flex justify-around z-50 bg-black bg-opacity-70 ">
       <header className="flex w-full justify-around ">
 
           <div className="max-md:-left-5">
