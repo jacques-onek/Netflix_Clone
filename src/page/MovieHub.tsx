@@ -1,11 +1,15 @@
 // import Scroller from "../component/Scroller"
-import { Outlet } from "react-router-dom"
+import { Outlet, useParams } from "react-router-dom"
+import Home from "./Home"
 
 const MovieHub = () => {
+
+  const {movieId} = useParams()
   return (
     <div>
-      {/* <Scroller/> */}
-      <Outlet/>
+      {
+        movieId ? <Outlet/> :<Home/>
+      }  
     </div>
   )
 }
