@@ -79,11 +79,11 @@ const MovieDetails = () => {
             <div className="px-4 lg:px-10">
                <div className="flex gap-3 py-5 ">
                  {MovieDetails.genres.map(({id,name}:{id:number,name:string}) => (
-                  <p key={id}className="text-sm text-slate-600" > {name}</p>
+                  <p key={id}className="text-sm text-slate-600 " > {name}</p>
                  ))}
                </div>
                <div>
-                  <h1 className="font-extrabold mb-5">{MovieDetails?.title}</h1>
+                  <h1 className="font-extrabold mb-5 text-2xl ">{MovieDetails?.title}</h1>
                </div>
                <div className="lg:w-7/12">
                   <p className="text-sm lg:text-xl "> {MovieDetails.overview} </p>
