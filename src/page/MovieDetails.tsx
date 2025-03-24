@@ -8,6 +8,7 @@ import { IoIosStar } from "react-icons/io";
 import Swipper from "../component/cards/Swipper";
 import { SwiperSlide } from "swiper/react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import NavBar from "../component/NavBar";
   
 
 const MovieDetails = () => {
@@ -62,19 +63,16 @@ const MovieDetails = () => {
 
   return (
     <div className="overflow-x-hidden">
-      <div className="w-screen flex pl-14 max-md:pl-2 flex-col justify-between max-md:gap-32 bg-no-repeat max-md:h-[35vh]  top-2 h-[95vh]   bg-cover  bg-center max-md:rounded-sm   " style={{backgroundImage:`url(${bg})`}}>
-      <div className="flex flex-col justify-between h-full ">
-          <div className="w-6/12  flex-col pt-44 max-md:pt-16 px-auto   mb-10 max-md:w-full max-lg:w-screen max-md:px-0 relative  -left-8  max-md:ml-14">
-             <h1 className="text-6xl  font-black text-[#e40813] max-md:text-3xl max-md:pr-5 max-lg:text-6xl ">{MovieDetails?.title}</h1>
-          </div>
-          <div className="px-10 max-md: w-6/12 ml-10 mt-2 h-48  border-0 max-md:py-5  relative -left-20 max-md:w-screen  max-lg:w-full overflow-x-auto">
-            <button className="px-20 py-3 bg-[#e40813] z-50 max-md:py-2 outline-none transition duration-200 hover:bg-red-700 text-white rounded-xl max-lg:w-[30rem] max-lg:py-8 max-lg:text-3xl max-md:w-auto  max-md:px-4 max-md:text-xl"> 
+      <NavBar/>
+      <div className="w-screen relative flex pl-14 max-md:pl-2 flex-col justify-between max-md:gap-32 bg-no-repeat max-md:h-[35vh]  top-2 h-[95vh]   bg-cover  bg-center max-md:rounded-sm   " style={{backgroundImage:`url(${bg})`}}>
+      <div className="flex flex-col justify-between h-full max-md:ml-10 "/>
+      <div className="px-10 max-md:px-6  w-6/12 ml-10 mt-2 h-48  border-0 max-md:py-5  relative -left-14 max-md:w-screen  max-lg:w-full overflow-x-auto">
+            <button className="px-20 max-md:px-auto py-3 bg-[#e40813] z-50 max-md:py-2 outline-none transition duration-200 hover:bg-red-700 text-white rounded-xl max-lg:w-[30rem] max-lg:py-8 max-lg:text-3xl max-md:w-auto  max-md:px-4 max-md:text-xl"> 
                 <div className="flex  gap-4 justify-center "> 
                   <BiSolidMoviePlay/> <p className="text-sm">Watch Now</p> 
                 </div>
             </button>
           </div>
-      </div>
     </div>
          <div>
             {/* je code la partie du titre de details  */}
@@ -83,6 +81,9 @@ const MovieDetails = () => {
                  {MovieDetails.genres.map(({id,name}:{id:number,name:string}) => (
                   <p key={id}className="text-sm text-slate-600" > {name}</p>
                  ))}
+               </div>
+               <div>
+                  <h1 className="font-extrabold mb-5">{MovieDetails?.title}</h1>
                </div>
                <div className="lg:w-7/12">
                   <p className="text-sm lg:text-xl "> {MovieDetails.overview} </p>
@@ -103,13 +104,13 @@ const MovieDetails = () => {
                    <p>{MovieDetails.release_date}</p>
                  </div>
                  </div>
-                 <div >
+                 {/* <div >
                     <h1> Companies Owner  </h1>
-                    <div className="grid-cols-2 gap-2 w-full ">
-                     <div className=" ">
+                    <div className="gap-2 w-full ">
+                     <div className=" grid grid-cols-2 grid-rows-2 ">
                         {MovieDetails.production_companies.map(({id,logo_path,name,origin_country}:{id:number,logo_path:string, name:string, origin_country:string}) => (
-                          <div key={id} className="flex gap-3 py-4 ">
-                            <img src={logo_path ? `https://image.tmdb.org/t/p/w500/${logo_path}` : 'https://picsum.photos/150'} alt={name} className=" size-20 w-auto max-w-44 rounded-xl lg:max-w-full"/>
+                          <div key={id} className="flex flex-col-reverse gap-3 py-4 ">
+                            <img src={logo_path ? `https://image.tmdb.org/t/p/w500/${logo_path}` : 'https://picsum.photos/150'} alt={name} className=" size-10 w-auto max-w-44 rounded-xl lg:max-w-full"/>
                              <div className="text-sm truncate">
                                  <p className="text-sm">{name}</p>
                                  <p className="text-sm">{origin_country}</p>                              
@@ -119,11 +120,24 @@ const MovieDetails = () => {
                         ))}
                     </div>
                   </div>   
-                </div>
+                </div> */}
                
             </div>
          </div>
-         <div className="relative w-full " >
+         <div className="flex flex-col px-10 max-md:px-4">
+      <h1 className="text-xl  mt-14 mb-8 max-md:my-6 font-extrabold px-4"> Casting </h1>
+      <div className="grid grid-cols-3 max-md:grid-cols-2  gap-2">
+       {MovieCasting?.cast.map(({id,profile_path,name}:{id:number,profile_path:string,name:string,character:string}) => (
+         <div key={id} className="flex  gap-3 py-4 text-center bg-[#272727] rounded-lg truncate p-2  ">
+           <img src={profile_path ? `https://image.tmdb.org/t/p/w500/${profile_path}` : 'https://picsum.photos/150'} alt={name} className=" object-center  size-24 rounded-xl max-md:size-14"/>
+           <div className="max-md:text-xs relative -bottom-5">
+             <p>{name}</p>
+             {/* <p>{character}</p> */}
+           </div>
+          </div>))}
+      </div>
+    </div>
+   <div className="relative w-full " >
        <h1 className="text-xl  mt-14 mb-8 max-md:my-6 font-extrabold px-4"> Recommanded movies </h1>
     <div className="relative w-full ">
     {/* Bouton Précédent */}
@@ -158,21 +172,8 @@ const MovieDetails = () => {
         <FaChevronRight size={20} />
       </button>
       </div>
-    </div>
-    <div className="flex flex-col px-10 max-md:px-4">
-      <h1 className="text-xl  mt-14 mb-8 max-md:my-6 font-extrabold px-4"> Casting </h1>
-      <div className="grid grid-cols-3 max-md:grid-cols-1 ">
-       {MovieCasting?.cast.map(({id,profile_path,name,character}:{id:number,profile_path:string,name:string,character:string}) => (
-         <div key={id} className="flex ml-4 gap-3 py-4 text-center">
-           <img src={profile_path ? `https://image.tmdb.org/t/p/w500/${profile_path}` : 'https://picsum.photos/150'} alt={name} className=" object-center  size-24 rounded-xl"/>
-           <div>
-             <p>{name}</p>
-             <p>{character}</p>
-           </div>
-          </div>))}
       </div>
-    </div>
-      </div>
+   </div>
   );
 };
 
