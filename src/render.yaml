@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: netflix-clone
+    env: node
+    buildCommand: "npm install"
+    startCommand: "npm run start"
+    plan: free
+    routes:
+      - path: "/(.*)"
+        rewrite: "/index.html"
