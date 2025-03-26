@@ -61,7 +61,7 @@ const NavBar = () => {
                 </Link>
               </ul>
           </div>
-          <div className=" text-3xl font-bold text-white lg:hidden absolute right-4 ">
+          <div className=" text-3xl font-bold text-white lg:hidden absolute right-4  ">
              <button onClick={toggle}><LuAlignRight /></button>
           </div>
        </header>

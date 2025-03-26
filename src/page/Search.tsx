@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { fetchSearchResults,fetchTVSearchResults } from "../service/tmdb"
 import { useQuery } from "@tanstack/react-query"
 import { TiDelete } from "react-icons/ti";
@@ -8,9 +8,16 @@ import Swipper from "../component/cards/Swipper";
 import { SwiperSlide } from "swiper/react";
 import { IoIosStar } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
+import { NavBarContext } from "../context/NAvBarcontext";
 
-const Search = ({sear}:{sear:string}) => {
 
+const Search = () => {
+
+   const context  = useContext(NavBarContext)
+   if (!context) {
+     throw new Error("SomeComponent must be used within a <NavBarContextProvider>");
+   }
+   const {search:sear} = context
 
 const [query,setquery] = useState("")
  const {data:searchMoviesResults} = useQuery({
@@ -27,7 +34,7 @@ const [query,setquery] = useState("")
 
   return (
     <div className="relative h-auto flex flex-col px-10 max-md:px-4">
-        <div className="flex h-14  px-4 lg:hidden">
+        <div className="flex h-14  px-4 lg:hidden md:hidden">
           <div className="flex h-10 justify-around my-4 rounded-xl shadow-lg bg-[#272727]">
             <IoSearchOutline className="size-6  mt-2" />
              <input type="text" value={query} onChange={(e) => setquery(e.target.value)} placeholder="Search something" className="w-3/5 h-auto outline-none focus:cursor-pointer  relative -left-2 bg-transparent hover:outline-none cursor-pointer mr-4" />

@@ -6,9 +6,8 @@ import Scroller from "../component/Scroller"
 import ReactPlayer from 'react-player'
 import Footer from "../component/Footer"
 import { NavBarContext } from "../context/NAvBarcontext";
-import { useContext } from "react"
+import { useContext } from "react";
 import Search from "./Search"
-
 
 const Home = () => {
 
@@ -17,7 +16,7 @@ const Home = () => {
     throw new Error("SomeComponent must be used within a <NavBarContextProvider>");
   }
   const {search} = context
-  
+
   const { data: trailerKey } = useQuery(
     {
       queryKey:["video",550],
@@ -28,16 +27,15 @@ const Home = () => {
 
   return (
     <div className="overflow-x-hidden">
+      {/* header section  */}
+         <NavBar/>
 
-      <NavBar/>
-      {search ? (
-         <div className="max-md:hidden">
-            <Search sear={search}/>
-         </div>
-             ): (
-      
-          <Header/>
-      )}
+         {search ? (
+          <div>
+            <Search/>
+          </div>
+         ) : (<Header/>)}
+         
        {/* main section  */}
        <div>
          <Scroller />
