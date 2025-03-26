@@ -10,7 +10,7 @@ const NavBarMobile = () => {
     if (!context) {
         throw new Error("SomeComponent must be used within a <NavBarContextProvider>");
       }
-    const [,toggle] = context
+    const {toggle} = context
 
   return (
     <div className=" fixed top-0  w-full     flex-col h-screen z-50  " >

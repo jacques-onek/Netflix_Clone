@@ -1,5 +1,5 @@
 import {BrowserRouter,Routes,Route} from "react-router-dom"
-import { Home,MovieHub,MovieDetails,SeriesHub,SerieDetails} from "./page"
+import { MovieHub,MovieDetails,SeriesHub,SerieDetails} from "./page"
 import Search from "./page/Search"
 
 const App = () => {
@@ -7,7 +7,7 @@ const App = () => {
 
     <BrowserRouter>
        <Routes>
-          <Route element={<Home/>} path="/"  />
+          <Route path="/" element={<MovieHub/>}   />
           <Route path="/movies" element={<MovieHub/>}  >
              <Route  path=":movieId" element={<MovieDetails/>} />
           </Route>
