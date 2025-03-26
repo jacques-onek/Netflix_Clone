@@ -8,6 +8,7 @@ const App = () => {
     <BrowserRouter>
        <Routes>
           <Route path="/" element={<MovieHub/>}   />
+          <Route path="*" element={<MovieHub/>}   />
           <Route path="/movies" element={<MovieHub/>}  >
              <Route  path=":movieId" element={<MovieDetails/>} />
           </Route>
